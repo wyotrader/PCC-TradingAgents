@@ -129,9 +129,7 @@ def get_stock_stats_indicators_window(
     }
 
     if indicator not in best_ind_params:
-        raise ValueError(
-            f"Indicator {indicator} is not supported. Please choose from: {list(best_ind_params.keys())}"
-        )
+        return f"Indicator {indicator} is not supported. Skipping."
 
     end_date = curr_date
     curr_date_dt = datetime.strptime(curr_date, "%Y-%m-%d")
