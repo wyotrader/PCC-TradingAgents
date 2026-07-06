@@ -175,6 +175,9 @@ __marimo__/
 .streamlit/secrets.toml
 # Cache
 **/data_cache/
+# Enterprise env file (secrets) and generated run reports
+.env.enterprise
+reports/
 # PCC local runtime
 .venv/
 .env.local
