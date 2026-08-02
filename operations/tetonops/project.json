@@ -1,0 +1,25 @@
+{
+  "contractVersion": "1.0",
+  "project": "trading-agents",
+  "displayName": "PCC TradingAgents",
+  "repository": "git@github.com:wyotrader/PCC-TradingAgents.git",
+  "applicationType": "service",
+  "deployment": {
+    "host": "pcc-aiservices-01",
+    "releaseRoot": "/opt/pcc-tradingagents/releases",
+    "currentSymlink": "/opt/pcc-tradingagents/current",
+    "packagePrefix": "pcc-tradingagents",
+    "actions": ["capabilities", "status", "preflight", "activate", "verify", "rollback-info"],
+    "runtimeServices": ["pcc-tradingagents-sidecar.service"],
+    "healthEndpoints": ["http://127.0.0.1:8100/health"],
+    "migrationInventory": "operations/tetonops/migration-inventory.json",
+    "releaseGroup": "jwhitman",
+    "capabilities": ["immutable-releases", "service-activation", "http-health-checks"],
+    "requiredFiles": ["operations/tetonops/project.json", "operations/tetonops/migration-inventory.json", "pcc_wrapper/server.py", "pcc_wrapper/start.sh"]
+  },
+  "database": null,
+  "evidenceRoot": "/var/lib/tetonops/evidence/trading-agents",
+  "backupRoot": "/var/backups/tetonops/trading-agents",
+  "compatibility": [],
+  "requiredTetonOps": {"minimumVersion": "1.0.0", "manifestContract": "1.0", "queryPackContract": "1.0", "migrationInventoryContract": "1.0", "outputContract": "1.0"}
+}
