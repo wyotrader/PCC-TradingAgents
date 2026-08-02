@@ -1,18 +1,16 @@
-import os
 import json
+import os
 import time
-import asyncio
-from datetime import datetime
-from typing import Optional
 from concurrent.futures import ThreadPoolExecutor
+from datetime import datetime
 
-from fastapi import FastAPI, HTTPException, BackgroundTasks
+import uvicorn
+from fastapi import BackgroundTasks, FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-import uvicorn
 
-from tradingagents.graph.trading_graph import TradingAgentsGraph
 from tradingagents.default_config import DEFAULT_CONFIG
+from tradingagents.graph.trading_graph import TradingAgentsGraph
 
 # --- Configuration ---
 LLM_CONFIGS = {
@@ -39,12 +37,12 @@ print(f"Starting with LLM mode: {MODE}")
 # --- Models ---
 class AnalyzeRequest(BaseModel):
     ticker: str
-    date: Optional[str] = None
+    date: str | None = None
     mode: str = "swing"
 
 class BatchAnalyzeRequest(BaseModel):
     tickers: list[str]
-    date: Optional[str] = None
+    date: str | None = None
     mode: str = "swing"
 
 class MarketSummaryRequest(BaseModel):
@@ -286,7 +284,7 @@ Provide your response in this exact JSON format (no markdown, no backticks, just
             }
 
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"AI summary failed: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"AI summary failed: {str(e)}") from e
 
 
 @app.get("/api/cache/{ticker}")
