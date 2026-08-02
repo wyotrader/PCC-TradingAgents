@@ -1,0 +1,6 @@
+{
+  "contractVersion": "1.0",
+  "project": "trading-agents",
+  "activationOperations": ["declarative-registration"],
+  "completionMarkers": ["DECLARATIVE_PROJECT_ACTIVATION=PASS"]
+}
